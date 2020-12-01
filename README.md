@@ -45,7 +45,12 @@ You might need –ProfileName if your configuration of .aws/credentials file doe
 ### Lambda Configuration
 1. Once created, login to the AWS console.   In Find services, search for Lambda.  Click on Lambda.
 ![Picture1](./Graphics/Picture1.png)
-2. Click on the lambda function name you used with the cmdlet.  Click Environment Variable
+2. Click on the lambda function name you used with the cmdlet.  Click Environment Variables and add the following
+```
+WorkspaceId
+WorkspaceKey
+LogAnalyticsTableName
+```
 ![Picture4](./Graphics/Picture4.png)
 3. Click on the lambda function name you used with the cmdlet. Click Add Trigger 
 ![Picture2](./Graphics/Picture2.png)
