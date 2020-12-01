@@ -6,6 +6,7 @@ CloudTrail Logs --> AWS S3 --> AWS SNS Topic --> AWS Lambda --> Azure Log Analyt
 ![Picture9](./Graphics/Picture9.png)
 
 ## Deployment
+### Option 1
 ### Machine Setup
 To deploy this, you will need a machine prepared with the following:
  - PowerShell Core – I recommend PowerShell 7 [found here](https://github.com/PowerShell/PowerShell/releases)
@@ -24,7 +25,32 @@ Added to VS Code profile:
 $webclient=New-Object System.Net.WebClient
 $webclient.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
 ```
-### Create AWS Role
+
+### Create the Lambda Function
+To deploy the PowerShell script, you can create a Package (zip file) to upload to the AWS console or you can use the Publish-AWSPowerShell cmdlet.
+```powershell
+Publish-AWSPowerShellLambda -Name YourLambdaNameHere -ScriptPath <path>/SNStoAzSentinel.ps1 -Region <region> -IAMRoleArn <arn of role created earlier> -ProfileName <profile>
+```
+You might need –ProfileName if your configuration of .aws/credentials file doesn't contain a default.  See this document for information on setting up your AWS credentials. 
+
+### Option 2
+1.	Create a new AWS Lambda and select "Author from scratch"
+2.	Give Function Name and select Runtime ".NET Core 2.1 (C#/PowerShell)" and click Create function
+3.	After successful creation, now you can change its code and configuration 
+4.	Under Function code, click on Actions --> Upload a .zip file (SNStoAzSentinel.zip)
+5.	Follow the steps in "### Lambda Configuration" from step 2
+
+### Lambda Configuration
+1. Once created, login to the AWS console.   In Find services, search for Lambda.  Click on Lambda.
+![Picture1](./Graphics/Picture1.png)
+2. Click on the lambda function name you used with the cmdlet.  Click Environment Variable
+![Picture4](./Graphics/Picture4.png)
+3. Click on the lambda function name you used with the cmdlet. Click Add Trigger 
+![Picture2](./Graphics/Picture2.png)
+4. Select SNS.  Select the SNS Name.  Click Add. 
+![Picture3](./Graphics/Picture3.png)
+
+#### Create AWS Role
 The Lambda function will need an execution role defined that grants access to the S3 bucket and CloudWatch logs.  To create an execution role: 
 1. Open the [roles](https://console.aws.amazon.com/iam/home#/roles) page in the IAM console. 
 2. Choose Create role. 
@@ -35,23 +61,7 @@ The Lambda function will need an execution role defined that grants access to th
 
 The AWSLambdaExecute policy has the permissions that the function needs to manage objects in Amazon S3 and write logs to CloudWatch Logs.  Copy the arn of the role created as you will need it for the next step. 
 
-### Create the Lambda Function
-To deploy the PowerShell script, you can create a Package (zip file) to upload to the AWS console or you can use the Publish-AWSPowerShell cmdlet.
-```powershell
-Publish-AWSPowerShellLambda -Name YourLambdaNameHere -ScriptPath <path>/SNStoAzSentinel.ps1 -Region <region> -IAMRoleArn <arn of role created earlier> -ProfileName <profile>
-```
-You might need –ProfileName if your configuration of .aws/credentials file doesn't contain a default.  See this document for information on setting up your AWS credentials. 
-
-### Edit the Lambda Trigger
-1. Once created, login to the AWS console.   In Find services, search for Lambda.  Click on Lambda.
-![Picture1](./Graphics/Picture1.png)
-2. Click on the lambda function name you used with the cmdlet.  Click Environment Variable
-![Picture4](./Graphics/Picture4.png)
-2. Click on the lambda function name you used with the cmdlet. Click Add Trigger 
-![Picture2](./Graphics/Picture2.png)
-3. Select SNS.  Select the bucket.  Acknowledge the warning at the bottom.  Click Add. 
-![Picture3](./Graphics/Picture3.png)
-4. Your lambda function is ready to send data to Log Analytics.   
+With the above configuration steps, Your lambda function is ready to send data to Log Analytics.
 
 ### Test the function
 1. To test your function, Perform some actions like Start EC2, Stop EC2, Login into EC2, etc.,. 
@@ -63,5 +73,3 @@ You might need –ProfileName if your configuration of .aws/credentials file doe
 ![Picture7](./Graphics/Picture7.png)
 5. Go to portal.azure.com and verify your data is in the custom log. 
 ![Picture8](./Graphics/Picture8.png)
-
-  
