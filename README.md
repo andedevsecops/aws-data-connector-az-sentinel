@@ -1,6 +1,10 @@
 # AWS Lambda Function to import S3 Files to Azure Sentinel
 This Lambda function is desgined to read SNS Files and send them to Azure Sentinel using the Log Analytics API.
 
+Flow:
+CloudTrail Logs --> AWS S3 --> AWS SNS Topic --> AWS Lambda --> Azure Log Analytics
+![Picture9](./Graphics/Picture9.png)
+
 ## Deployment
 ### Machine Setup
 To deploy this, you will need a machine prepared with the following:
