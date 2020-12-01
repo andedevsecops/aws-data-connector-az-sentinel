@@ -37,8 +37,10 @@ You might need –ProfileName if your configuration of .aws/credentials file doe
 1.	Create a new AWS Lambda and select "Author from scratch"
 2.	Give Function Name and select Runtime ".NET Core 2.1 (C#/PowerShell)" and click Create function
 3.	After successful creation, now you can change its code and configuration 
-4.	Under Function code, click on Actions --> Upload a .zip file (SNStoAzSentinel.zip)
+4.	Under Function code, click on Actions --> Upload a .zip file (/aws-data-connector-az-sentinel/blob/main/SNStoAzSentinel.zip)
 5.	Follow the steps in "### Lambda Configuration" from step 2
+
+Note: Either you choose Option 1/Option 2, the following configuration steps are mandatory.
 
 ### Lambda Configuration
 1. Once created, login to the AWS console.   In Find services, search for Lambda.  Click on Lambda.
@@ -49,19 +51,17 @@ You might need –ProfileName if your configuration of .aws/credentials file doe
 ![Picture2](./Graphics/Picture2.png)
 4. Select SNS.  Select the SNS Name.  Click Add. 
 ![Picture3](./Graphics/Picture3.png)
-
-#### Create AWS Role
-The Lambda function will need an execution role defined that grants access to the S3 bucket and CloudWatch logs.  To create an execution role: 
-1. Open the [roles](https://console.aws.amazon.com/iam/home#/roles) page in the IAM console. 
-2. Choose Create role. 
-3. Create a role with the following properties. 
- - Trusted entity – AWS Lambda. 
- - Permissions – AWSLambdaBasicExecutionRole &  AmazonS3ReadOnlyAccess . 
- - Role name – AWSSNStoAzureSentinel. 
+5. Create AWS Role : The Lambda function will need an execution role defined that grants access to the S3 bucket and CloudWatch logs.  To create an execution role: 
+	1. Open the [roles](https://console.aws.amazon.com/iam/home#/roles) page in the IAM console. 
+	2. Choose Create role. 
+	3. Create a role with the following properties. 
+		 - Trusted entity – AWS Lambda. 
+		 - Permissions – AWSLambdaBasicExecutionRole &  AmazonS3ReadOnlyAccess . 
+		 - Role name – AWSSNStoAzureSentinel. 
 
 The AWSLambdaExecute policy has the permissions that the function needs to manage objects in Amazon S3 and write logs to CloudWatch Logs.  Copy the arn of the role created as you will need it for the next step. 
 
-With the above configuration steps, Your lambda function is ready to send data to Log Analytics.
+6. Your lambda function is ready to send data to Log Analytics.
 
 ### Test the function
 1. To test your function, Perform some actions like Start EC2, Stop EC2, Login into EC2, etc.,. 
