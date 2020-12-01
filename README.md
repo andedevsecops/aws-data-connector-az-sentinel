@@ -57,6 +57,7 @@ LogAnalyticsTableName
 4. Select SNS.  Select the SNS Name.  Click Add. 
 ![Picture3](./Graphics/Picture3.png)
 5. Create AWS Role : The Lambda function will need an execution role defined that grants access to the S3 bucket and CloudWatch logs.  To create an execution role: 
+	
 	1. Open the [roles](https://console.aws.amazon.com/iam/home#/roles) page in the IAM console. 
 	2. Choose Create role. 
 	3. Create a role with the following properties. 
