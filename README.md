@@ -40,7 +40,7 @@ You might need –ProfileName if your configuration of .aws/credentials file doe
 4.	Under Function code, click on Actions --> Upload a .zip file (/aws-data-connector-az-sentinel/blob/main/SNStoAzSentinel.zip)
 5.	Follow the steps in "### Lambda Configuration" from step 2
 
-Note: Either you choose Option 1/Option 2, the following configuration steps are mandatory.
+### Note: Either you choose Option 1/Option 2, the following configuration steps are mandatory.
 
 ### Lambda Configuration
 1. Once created, login to the AWS console.   In Find services, search for Lambda.  Click on Lambda.
@@ -59,7 +59,7 @@ Note: Either you choose Option 1/Option 2, the following configuration steps are
 		 - Permissions – AWSLambdaBasicExecutionRole &  AmazonS3ReadOnlyAccess . 
 		 - Role name – AWSSNStoAzureSentinel. 
 
-The AWSLambdaExecute policy has the permissions that the function needs to manage objects in Amazon S3 and write logs to CloudWatch Logs.  Copy the arn of the role created as you will need it for the next step. 
+	The AWSLambdaExecute policy has the permissions that the function needs to manage objects in Amazon S3 and write logs to CloudWatch Logs.  Copy the arn of the role created as you will need it for the next step. 
 
 6. Your lambda function is ready to send data to Log Analytics.
 
