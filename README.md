@@ -10,7 +10,7 @@ Code does the following things with the logs it processes.
 4.	In future if other AWS datatypes exceed 500 columns a similar split may be required for them as well. 
 5.	The processing of Data as described in 3 will lead to some data being ingested into 2 or more different tables and increase the log ingestion metrics\billing. The customer can decide they don't want the _ALL table and this would remove the duplicate data storage volume
 
-Special thanks to [Chris Abberley] (https://github.com/cabberley) for the above logic
+Special thanks to [Chris Abberley](https://github.com/cabberley) for the above logic
 
 ## **Function Flow process**
 CloudTrail Logs --> AWS S3 --> AWS SNS Topic --> AWS Lambda --> Azure Log Analytics
