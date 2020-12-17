@@ -12,16 +12,17 @@ Code does the following things with the logs it processes.
 
 Special thanks to [Chris Abberley](https://github.com/cabberley) for the above logic
 
-**Note** 
-To avoid additional billing and duplication:
-1. You can turn off LogAnalyticsTableName_ALL using additional Environment Variable CoreFieldsAllTable to false
-2. You can turn off LogAnalyticsTableName_AWSREsourceType using additional Environment Variable SplitAWSResourceTypeTables to false
+**Note**  
 
-** Either CoreFieldsAllTable or SplitAWSResourceTypeTables must be true **
+To avoid additional billing and duplication:
+1. You can turn off LogAnalyticsTableName_ALL using additional Environment Variable **CoreFieldsAllTable** to **false**
+2. You can turn off LogAnalyticsTableName_AWSREsourceType using additional Environment Variable **SplitAWSResourceTypeTables** to **false**
+
+**Either CoreFieldsAllTable or SplitAWSResourceTypeTables must be true**
 
 
 ## **Function Flow process**
-CloudTrail Logs --> AWS S3 --> AWS SNS Topic --> AWS Lambda --> Azure Log Analytics
+**CloudTrail Logs --> AWS S3 --> AWS SNS Topic --> AWS Lambda --> Azure Log Analytics**
 ![Picture9](./Graphics/Picture9.png)
 
 ## Installation / Setup Guide
