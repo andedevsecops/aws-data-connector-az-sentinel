@@ -18,7 +18,7 @@ To avoid additional billing and duplication:
 1. You can turn off LogAnalyticsTableName_ALL using additional Environment Variable **CoreFieldsAllTable** to **false**
 2. You can turn off LogAnalyticsTableName_AWSREsourceType using additional Environment Variable **SplitAWSResourceTypeTables** to **false**
 
-**Either CoreFieldsAllTable or SplitAWSResourceTypeTables must be true**
+**Either CoreFieldsAllTable or SplitAWSResourceTypeTables must be true or both can be true**
 
 
 ## **Function Flow process**
