@@ -1,3 +1,6 @@
+## 1.3
+- Added support to ingest ".csv" and ".json" files apart from CloudTrail Events
+
 ## 1.2
 - To avoid additional billing and duplication added additional environment variables CoreFieldsAllTable and SplitAWSResourceTypeTables to turn on/off LogAnalyticsTables
 - Added CHANGELOG.MD to track code changes
@@ -5,7 +8,6 @@
 ## 1.1
 - Added Secrets Manager to store Log Analytics Workspace (LAW) Id and Log Analytics Workspace (LAW) Key
 - Added Environment Variable Secret Name to retrieve secrets from Secrets Manager
-
 
 ## 1.0
 - Created AWS Lamba using PowerShell to ingest CloudTrail Logs to Azure Log Analytics Workspace
