@@ -1,5 +1,5 @@
 # AWS Lambda Function to import CloudTrail Logs to Azure Sentinel
-This Lambda function is designed to ingest AWS CloudTrail Events and send them to Azure Log Analytics workspace using the Log Analytics API.
+This Lambda function is designed to ingest AWS CloudTrail Events/S3 Events and send them to Azure Log Analytics workspace using the Log Analytics API.
 
 AWS CloudTrail logs are audit type events from all/any AWS resources in a tenancy. Each AWS resource has a unique set of Request and Response Parameters. Azure Log Analytics has a column per table limit of 500, (plus some system columns) the aggregate of AWS parameter fields will exceed this quickly leading to potential loss of event records
 
@@ -22,8 +22,13 @@ To avoid additional billing and duplication:
 
 
 ## **Function Flow process**
+# **SNS Lambda Trigger:**
 **CloudTrail Logs --> AWS S3 --> AWS SNS Topic --> AWS Lambda --> Azure Log Analytics**
 ![Picture9](./Graphics/Picture9.png)
+
+# **SQS Lambda Trigger:**
+**CloudTrail Logs --> AWS S3 --> AWS SQS --> AWS Lambda --> Azure Log Analytics**
+![Picture9](./Graphics/Picture11.png)
 
 ## Installation / Setup Guide
 
